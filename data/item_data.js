@@ -299,7 +299,7 @@ const items = {
     "(F) Prime Oreha Fusion Material" : {
         quantity: 15, //batch amount
         sell_amount: prices["(F) Prime Oreha Fusion Material"],
-        icon: "https://static.inven.co.kr/image_2011/site_image/lostark/itemicon/use_11_29.png?v=231024a",
+        icon: "https://static.inven.co.kr/image_2011/site_image/lostark/itemicon/use_11_29.png",
         rarity: rarity.epic,
         category: category.special,
         time: "01:03:00",
