@@ -54,29 +54,54 @@ function build_data() {
     fill_data()
 }
 
+let count_items = 0
+
 function fill_data(type) {
     //write main data
     let content = document.getElementById("content")
     list_data.forEach(item => {
-        content.innerHTML += `
-      <tr>
-      <th scope="row">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${item.item}" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <defs>
-            <pattern id="${item.rarity[1]}" patternUnits="userSpaceOnUse" width="32" height="32">
-            <image href="${item.rarity[0]}" x="0" y="0" width="32" height="32"/>
-            </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#${item.rarity[1]})"/>
-        <image href="${item.icon}" x="0" y="0" width="32" height="32"/>
-        <text x="50%" y="50%" fill="#000" dy=".3em" text-anchor="middle" dominant-baseline="middle"></text>
-        </svg>
-      </th>
-      <td>${item.item}</td>
-      <td>${craft_amount}</td>
-      <td>${(item.profit * craft_amount).toFixed(2)} <span class="badge"><img src="./img/icons/gold.png" width="18" height="18"></span></td>
-    </tr>
-      `;
+        if (count_items < 3) {
+            content.innerHTML += `
+            <tr class="table-active">
+            <th scope="row">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${item.item}" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <defs>
+                  <pattern id="${item.rarity[1]}" patternUnits="userSpaceOnUse" width="32" height="32">
+                  <image href="${item.rarity[0]}" x="0" y="0" width="32" height="32"/>
+                  </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#${item.rarity[1]})"/>
+              <image href="${item.icon}" x="0" y="0" width="32" height="32"/>
+              <text x="50%" y="50%" fill="#000" dy=".3em" text-anchor="middle" dominant-baseline="middle"></text>
+              </svg>
+            </th>
+            <td>${item.item}</td>
+            <td>${craft_amount}</td>
+            <td>${(item.profit * craft_amount).toFixed(2)} <span class="badge"><img src="./img/icons/gold.png" width="18" height="18"></span></td>
+          </tr>
+            `;
+            count_items++
+        } else {
+            content.innerHTML += `
+            <tr>
+            <th scope="row">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${item.item}" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <defs>
+                  <pattern id="${item.rarity[1]}" patternUnits="userSpaceOnUse" width="32" height="32">
+                  <image href="${item.rarity[0]}" x="0" y="0" width="32" height="32"/>
+                  </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#${item.rarity[1]})"/>
+              <image href="${item.icon}" x="0" y="0" width="32" height="32"/>
+              <text x="50%" y="50%" fill="#000" dy=".3em" text-anchor="middle" dominant-baseline="middle"></text>
+              </svg>
+            </th>
+            <td>${item.item}</td>
+            <td>${craft_amount}</td>
+            <td>${(item.profit * craft_amount).toFixed(2)} <span class="badge"><img src="./img/icons/gold.png" width="18" height="18"></span></td>
+          </tr>
+            `;
+        }
     });
     get_item_prices(type)
 }
@@ -558,21 +583,21 @@ const items = {
         recipe: {
             crafting_cost: 205,
             ingredients: [{
-                name: "Oreha Relic",
-                quantity: 8
-            },
-            {
-                name: "Rare Relic",
-                quantity: 26
-            },
-            {
-                name: "Ancient Relic",
-                quantity: 64
-            }
+                    name: "Oreha Relic",
+                    quantity: 8
+                },
+                {
+                    name: "Rare Relic",
+                    quantity: 26
+                },
+                {
+                    name: "Ancient Relic",
+                    quantity: 64
+                }
             ]
         }
     },
-   "(E) Prime Oreha Fusion Material": {
+    "(E) Prime Oreha Fusion Material": {
         quantity: 15,
         sell_amount: prices["Prime Oreha Fusion Material"],
         icon: "./img/icons/use_11_29648a.png",
@@ -583,17 +608,17 @@ const items = {
         recipe: {
             crafting_cost: 300,
             ingredients: [{
-                name: "Oreha Relic",
-                quantity: 52
-            },
-            {
-                name: "Rare Relic",
-                quantity: 51
-            },
-            {
-                name: "Ancient Relic",
-                quantity: 107
-            }
+                    name: "Oreha Relic",
+                    quantity: 52
+                },
+                {
+                    name: "Rare Relic",
+                    quantity: 51
+                },
+                {
+                    name: "Ancient Relic",
+                    quantity: 107
+                }
             ]
         }
     },
@@ -608,17 +633,17 @@ const items = {
         recipe: {
             crafting_cost: 250,
             ingredients: [{
-                name: "Oreha Relic",
-                quantity: 16
-            },
-            {
-                name: "Rare Relic",
-                quantity: 29
-            },
-            {
-                name: "Ancient Relic",
-                quantity: 94
-            }
+                    name: "Oreha Relic",
+                    quantity: 16
+                },
+                {
+                    name: "Rare Relic",
+                    quantity: 29
+                },
+                {
+                    name: "Ancient Relic",
+                    quantity: 94
+                }
             ]
         }
     },
@@ -633,17 +658,17 @@ const items = {
         recipe: {
             crafting_cost: 205,
             ingredients: [{
-                name: "Oreha Solar Carp",
-                quantity: 10
-            },
-            {
-                name: "Natural Pearl",
-                quantity: 40
-            },
-            {
-                name: "Fish",
-                quantity: 80
-            }
+                    name: "Oreha Solar Carp",
+                    quantity: 10
+                },
+                {
+                    name: "Natural Pearl",
+                    quantity: 40
+                },
+                {
+                    name: "Fish",
+                    quantity: 80
+                }
             ]
         }
     },
@@ -658,17 +683,17 @@ const items = {
         recipe: {
             crafting_cost: 300,
             ingredients: [{
-                name: "Oreha Solar Carp",
-                quantity: 52
-            },
-            {
-                name: "Natural Pearl",
-                quantity: 69
-            },
-            {
-                name: "Fish",
-                quantity: 142
-            }
+                    name: "Oreha Solar Carp",
+                    quantity: 52
+                },
+                {
+                    name: "Natural Pearl",
+                    quantity: 69
+                },
+                {
+                    name: "Fish",
+                    quantity: 142
+                }
             ]
         }
     },
@@ -683,17 +708,17 @@ const items = {
         recipe: {
             crafting_cost: 250,
             ingredients: [{
-                name: "Oreha Solar Carp",
-                quantity: 16
-            },
-            {
-                name: "Natural Pearl",
-                quantity: 64
-            },
-            {
-                name: "Fish",
-                quantity: 128
-            }
+                    name: "Oreha Solar Carp",
+                    quantity: 16
+                },
+                {
+                    name: "Natural Pearl",
+                    quantity: 64
+                },
+                {
+                    name: "Fish",
+                    quantity: 128
+                }
             ]
         }
     },
@@ -708,17 +733,17 @@ const items = {
         recipe: {
             crafting_cost: 205,
             ingredients: [{
-                name: "Oreha Thick Meat",
-                quantity: 10
-            },
-            {
-                name: "Tough Leather",
-                quantity: 40
-            },
-            {
-                name: "Thick Raw Meat",
-                quantity: 80
-            }
+                    name: "Oreha Thick Meat",
+                    quantity: 10
+                },
+                {
+                    name: "Tough Leather",
+                    quantity: 40
+                },
+                {
+                    name: "Thick Raw Meat",
+                    quantity: 80
+                }
             ]
         }
     },
@@ -733,17 +758,17 @@ const items = {
         recipe: {
             crafting_cost: 300,
             ingredients: [{
-                name: "Oreha Thick Meat",
-                quantity: 52
-            },
-            {
-                name: "Tough Leather",
-                quantity: 69
-            },
-            {
-                name: "Thick Raw Meat",
-                quantity: 142
-            }
+                    name: "Oreha Thick Meat",
+                    quantity: 52
+                },
+                {
+                    name: "Tough Leather",
+                    quantity: 69
+                },
+                {
+                    name: "Thick Raw Meat",
+                    quantity: 142
+                }
             ]
         }
     },
@@ -758,17 +783,17 @@ const items = {
         recipe: {
             crafting_cost: 250,
             ingredients: [{
-                name: "Oreha Thick Meat",
-                quantity: 16
-            },
-            {
-                name: "Tough Leather",
-                quantity: 64
-            },
-            {
-                name: "Thick Raw Meat",
-                quantity: 128
-            }
+                    name: "Oreha Thick Meat",
+                    quantity: 16
+                },
+                {
+                    name: "Tough Leather",
+                    quantity: 64
+                },
+                {
+                    name: "Thick Raw Meat",
+                    quantity: 128
+                }
             ]
         }
     },
@@ -783,29 +808,29 @@ const items = {
         recipe: {
             crafting_cost: 50,
             ingredients: [{
-                name: "Oreha Thick Meat",
-                quantity: 12
-            },
-            {
-                name: "Oreha Solar Carp",
-                quantity: 10
-            },
-            {
-                name: "Treated Meat",
-                quantity: 48
-            },
-            {
-                name: "Redflesh Fish",
-                quantity: 40
-            },
-            {
-                name: "Thick Raw Meat",
-                quantity: 96
-            },
-            {
-                name: "Fish",
-                quantity: 80
-            }
+                    name: "Oreha Thick Meat",
+                    quantity: 12
+                },
+                {
+                    name: "Oreha Solar Carp",
+                    quantity: 10
+                },
+                {
+                    name: "Treated Meat",
+                    quantity: 48
+                },
+                {
+                    name: "Redflesh Fish",
+                    quantity: 40
+                },
+                {
+                    name: "Thick Raw Meat",
+                    quantity: 96
+                },
+                {
+                    name: "Fish",
+                    quantity: 80
+                }
             ]
         }
     },
@@ -820,25 +845,25 @@ const items = {
         recipe: {
             crafting_cost: 30,
             ingredients: [{
-                name: "Bright Wild Flower",
-                quantity: 6
-            },
-            {
-                name: "Strong Iron Ore",
-                quantity: 2
-            },
-            {
-                name: "Shy Wild Flower",
-                quantity: 24
-            },
-            {
-                name: "Rare Relic",
-                quantity: 2
-            },
-            {
-                name: "Wild Flower",
-                quantity: 48
-            }
+                    name: "Bright Wild Flower",
+                    quantity: 6
+                },
+                {
+                    name: "Strong Iron Ore",
+                    quantity: 2
+                },
+                {
+                    name: "Shy Wild Flower",
+                    quantity: 24
+                },
+                {
+                    name: "Rare Relic",
+                    quantity: 2
+                },
+                {
+                    name: "Wild Flower",
+                    quantity: 48
+                }
             ]
         }
     },
@@ -853,21 +878,21 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 3
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 12
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 24
-            },
-            {
-                name: "Iron Ore",
-                quantity: 5
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 3
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 12
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 24
+                },
+                {
+                    name: "Iron Ore",
+                    quantity: 5
+                }
             ]
         }
     },
@@ -882,21 +907,21 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 4
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 12
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 32
-            },
-            {
-                name: "Heavy Iron Ore",
-                quantity: 6
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 4
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 12
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 32
+                },
+                {
+                    name: "Heavy Iron Ore",
+                    quantity: 6
+                }
             ]
         }
     },
@@ -911,21 +936,21 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 3
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 12
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 24
-            },
-            {
-                name: "Tender Timber",
-                quantity: 3
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 3
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 12
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 24
+                },
+                {
+                    name: "Tender Timber",
+                    quantity: 3
+                }
             ]
         }
     },
@@ -940,21 +965,21 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 4
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 12
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 32
-            },
-            {
-                name: "Heavy Iron Ore",
-                quantity: 6
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 4
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 12
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 32
+                },
+                {
+                    name: "Heavy Iron Ore",
+                    quantity: 6
+                }
             ]
         }
     },
@@ -969,17 +994,17 @@ const items = {
         recipe: {
             crafting_cost: 30,
             ingredients: [{
-                name: "Bright Wild Flower",
-                quantity: 6
-            },
-            {
-                name: "Shy Wild Flower",
-                quantity: 24
-            },
-            {
-                name: "Wild Flower",
-                quantity: 48
-            }
+                    name: "Bright Wild Flower",
+                    quantity: 6
+                },
+                {
+                    name: "Shy Wild Flower",
+                    quantity: 24
+                },
+                {
+                    name: "Wild Flower",
+                    quantity: 48
+                }
             ]
         }
     },
@@ -994,21 +1019,21 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 3
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 12
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 24
-            },
-            {
-                name: "Tender Timber",
-                quantity: 3
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 3
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 12
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 24
+                },
+                {
+                    name: "Tender Timber",
+                    quantity: 3
+                }
             ]
         }
     },
@@ -1023,13 +1048,13 @@ const items = {
         recipe: {
             crafting_cost: 0,
             ingredients: [{
-                name: "Natural Pearl",
-                quantity: 20
-            },
-            {
-                name: "Wild Flower",
-                quantity: 35
-            }
+                    name: "Natural Pearl",
+                    quantity: 20
+                },
+                {
+                    name: "Wild Flower",
+                    quantity: 35
+                }
             ]
         }
     },
@@ -1044,21 +1069,21 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 3
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 12
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 24
-            },
-            {
-                name: "Iron Ore",
-                quantity: 5
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 3
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 12
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 24
+                },
+                {
+                    name: "Iron Ore",
+                    quantity: 5
+                }
             ]
         }
     },
@@ -1073,13 +1098,13 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Shy Wild Flower",
-                quantity: 9
-            },
-            {
-                name: "Wild Flower",
-                quantity: 18
-            }
+                    name: "Shy Wild Flower",
+                    quantity: 9
+                },
+                {
+                    name: "Wild Flower",
+                    quantity: 18
+                }
             ]
         }
     },
@@ -1096,8 +1121,7 @@ const items = {
             ingredients: [{
                 name: "Exquisite Mushroom",
                 quantity: 10
-            }
-            ]
+            }]
         }
     },
     "Pheromone Essence": {
@@ -1111,21 +1135,21 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 4
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 12
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 32
-            },
-            {
-                name: "Heavy Iron Ore",
-                quantity: 6
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 4
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 12
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 32
+                },
+                {
+                    name: "Heavy Iron Ore",
+                    quantity: 6
+                }
             ]
         }
     },
@@ -1140,21 +1164,21 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 4
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 16
-            },
-            {
-                name: "Rare Relic",
-                quantity: 5
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 32
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 4
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 16
+                },
+                {
+                    name: "Rare Relic",
+                    quantity: 5
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 32
+                }
             ]
         }
     },
@@ -1169,17 +1193,17 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 3
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 18
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 30
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 3
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 18
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 30
+                }
             ]
         }
     },
@@ -1194,25 +1218,25 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 4
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 12
-            },
-            {
-                name: "Iron Ore",
-                quantity: 10
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 32
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 4
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 12
+                },
+                {
+                    name: "Iron Ore",
+                    quantity: 10
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 32
+                }
             ]
         }
     },
-   "Splendid Elemental HP Potion": {
+    "Splendid Elemental HP Potion": {
         quantity: 2,
         sell_amount: prices["Splendid Elemental HP Potion"],
         icon: "./img/icons/battle_item_01_80.png",
@@ -1223,13 +1247,13 @@ const items = {
         recipe: {
             crafting_cost: 30,
             ingredients: [{
-                name: "Elemental HP Potion",
-                quantity: 3
-            },
-            {
-                name: "Bright Wild Flower",
-                quantity: 8
-            }
+                    name: "Elemental HP Potion",
+                    quantity: 3
+                },
+                {
+                    name: "Bright Wild Flower",
+                    quantity: 8
+                }
             ]
         }
     },
@@ -1244,13 +1268,13 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Panacea",
-                quantity: 3
-            },
-            {
-                name: "Exquisite Mushroom",
-                quantity: 10
-            }
+                    name: "Panacea",
+                    quantity: 3
+                },
+                {
+                    name: "Exquisite Mushroom",
+                    quantity: 10
+                }
             ]
         }
     },
@@ -1265,17 +1289,17 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Tough Leather",
-                quantity: 17
-            },
-            {
-                name: "Shy Wild Flower",
-                quantity: 17
-            },
-            {
-                name: "Wild Flower",
-                quantity: 27
-            }
+                    name: "Tough Leather",
+                    quantity: 17
+                },
+                {
+                    name: "Shy Wild Flower",
+                    quantity: 17
+                },
+                {
+                    name: "Wild Flower",
+                    quantity: 27
+                }
             ]
         }
     },
@@ -1290,25 +1314,25 @@ const items = {
         recipe: {
             crafting_cost: 30,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 5
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 20
-            },
-            {
-                name: "Sturdy Timber",
-                quantity: 2
-            },
-            {
-                name: "Rare Relic",
-                quantity: 4
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 40
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 5
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 20
+                },
+                {
+                    name: "Sturdy Timber",
+                    quantity: 2
+                },
+                {
+                    name: "Rare Relic",
+                    quantity: 4
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 40
+                }
             ]
         }
     },
@@ -1323,25 +1347,25 @@ const items = {
         recipe: {
             crafting_cost: 30,
             ingredients: [{
-                name: "Bright Wild Flower",
-                quantity: 2
-            },
-            {
-                name: "Sturdy Timber",
-                quantity: 2
-            },
-            {
-                name: "Shy Wild Flower",
-                quantity: 20
-            },
-            {
-                name: "Rare Relic",
-                quantity: 2
-            },
-            {
-                name: "Wild Flower",
-                quantity: 40
-            }
+                    name: "Bright Wild Flower",
+                    quantity: 2
+                },
+                {
+                    name: "Sturdy Timber",
+                    quantity: 2
+                },
+                {
+                    name: "Shy Wild Flower",
+                    quantity: 20
+                },
+                {
+                    name: "Rare Relic",
+                    quantity: 2
+                },
+                {
+                    name: "Wild Flower",
+                    quantity: 40
+                }
             ]
         }
     },
@@ -1356,21 +1380,21 @@ const items = {
         recipe: {
             crafting_cost: 15,
             ingredients: [{
-                name: "Exquisite Mushroom",
-                quantity: 3
-            },
-            {
-                name: "Fresh Mushroom",
-                quantity: 12
-            },
-            {
-                name: "Tender Timber",
-                quantity: 3
-            },
-            {
-                name: "Crude Mushroom",
-                quantity: 24
-            }
+                    name: "Exquisite Mushroom",
+                    quantity: 3
+                },
+                {
+                    name: "Fresh Mushroom",
+                    quantity: 12
+                },
+                {
+                    name: "Tender Timber",
+                    quantity: 3
+                },
+                {
+                    name: "Crude Mushroom",
+                    quantity: 24
+                }
             ]
         }
     }
