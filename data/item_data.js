@@ -44,13 +44,11 @@ function build_data() {
     //populate list
     for (let item in items) {
         if (items.hasOwnProperty(item)) {
-            console.log(item)
             calculate_price(item)
         }
     }
     //sort list
     list_data.sort((a, b) => b.profit - a.profit)
-    console.log(list_data)
     fill_data()
 }
 
@@ -64,18 +62,18 @@ function fill_data(type) {
             content.innerHTML += `
             <tr class="table-active">
             <th scope="row">
-            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${item.item}" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="48" height="48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${item.item}" preserveAspectRatio="xMidYMid slice" focusable="false">
               <defs>
-                  <pattern id="${item.rarity[1]}" patternUnits="userSpaceOnUse" width="32" height="32">
-                  <image href="${item.rarity[0]}" x="0" y="0" width="32" height="32"/>
+                  <pattern id="${item.rarity[1]}" patternUnits="userSpaceOnUse" width="48" height="48">
+                  <image href="${item.rarity[0]}" x="0" y="0" width="48" height="48"/>
                   </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#${item.rarity[1]})"/>
-              <image href="${item.icon}" x="0" y="0" width="32" height="32"/>
+              <image href="${item.icon}" x="0" y="0" width="48" height="48"/>
               <text x="50%" y="50%" fill="#000" dy=".3em" text-anchor="middle" dominant-baseline="middle"></text>
               </svg>
             </th>
-            <td>${item.item}</td>
+            <td>${item.item}<div class="hstack gap-3" id="materials_${item.item}"></div></td>
             <td>${craft_amount}</td>
             <td>${(item.profit * craft_amount).toFixed(2)} <span class="badge"><img src="./img/icons/gold.png" width="18" height="18"></span></td>
           </tr>
@@ -85,23 +83,45 @@ function fill_data(type) {
             content.innerHTML += `
             <tr>
             <th scope="row">
-            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${item.item}" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="48" height="48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${item.item}" preserveAspectRatio="xMidYMid slice" focusable="false">
               <defs>
-                  <pattern id="${item.rarity[1]}" patternUnits="userSpaceOnUse" width="32" height="32">
-                  <image href="${item.rarity[0]}" x="0" y="0" width="32" height="32"/>
+                  <pattern id="${item.rarity[1]}" patternUnits="userSpaceOnUse" width="48" height="48">
+                  <image href="${item.rarity[0]}" x="0" y="0" width="48" height="48"/>
                   </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#${item.rarity[1]})"/>
-              <image href="${item.icon}" x="0" y="0" width="32" height="32"/>
+              <image href="${item.icon}" x="0" y="0" width="48" height="48"/>
               <text x="50%" y="50%" fill="#000" dy=".3em" text-anchor="middle" dominant-baseline="middle"></text>
               </svg>
             </th>
-            <td>${item.item}</td>
+            <td>${item.item}<div class="hstack gap-3" id="materials_${item.item}"></div></td>
             <td>${craft_amount}</td>
             <td>${(item.profit * craft_amount).toFixed(2)} <span class="badge"><img src="./img/icons/gold.png" width="18" height="18"></span></td>
           </tr>
             `;
         }
+        //write new code
+        const ingredients = items[item.item].recipe.ingredients;
+        element = document.getElementById("materials_"+item.item)
+        for (let i = 0; i < ingredients.length; i++) {
+            element.innerHTML += `
+            <div class="p-2">
+            <span class="${materials[ingredients[i].name][4][1]}">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="18" height="18" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${item.item}" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <defs>
+                <pattern id="${materials[ingredients[i].name][4][0]}" patternUnits="userSpaceOnUse" width="18" height="18">
+                <image href="${item.rarity[0]}" x="0" y="0" width="18" height="18"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#${materials[ingredients[i].name][4][0]})"/>
+            <image href="${materials[ingredients[i].name][4][0]}" x="0" y="0" width="18" height="18"/>
+            <text x="50%" y="50%" fill="#000" dy=".3em" text-anchor="middle" dominant-baseline="middle"></text>
+            </svg>
+            ${ingredients[i].name}</span>
+            <span class="quantity">x${ingredients[i].quantity}</span>
+            </div>
+            `
+        };
     });
     get_item_prices(type)
 }
@@ -335,241 +355,6 @@ const materials = {
     "Elemental HP Potion": ["Elemental HP Potion", prices["Elemental HP Potion"], "1", "./img/icons/use_2_204648a.png", rarity.rare],
     "Panacea": ["Panacea", prices["Panacea"], "1", "./img/icons/use_2_204648a.png", rarity.rare]
 }
-
-/*
-//Recipes
-const items = {
-    "Time Stop Potion": {
-        quantity: 3, //batch amount
-        sell_amount: prices["Time Stop Potion"],
-        icon: "./img/icons/battle_item_01_76_lt_potion648a.png",
-        rarity: rarity.epic,
-        category: category.potion,
-        time: "01:00:00",
-        is_duplicate: [0, "Time Stop Potion"],
-        recipe: {
-            crafting_cost: 30,
-            ingredients: [{
-                    name: "Bright Wild Flower",
-                    quantity: 2
-                },
-                {
-                    name: "Sturdy Timber",
-                    quantity: 2
-                },
-                {
-                    name: "Shy Wild Flower",
-                    quantity: 20
-                },
-                {
-                    name: "Rare Relic",
-                    quantity: 2
-                },
-                {
-                    name: "Wild Flower",
-                    quantity: 40
-                },
-            ]
-        }
-    },
-    "Major HP Potion": {
-        quantity: 3, //batch amount
-        sell_amount: prices["Major HP Potion"],
-        icon: "./img/icons/battle_item_01_7_lt_heal648a.png",
-        rarity: rarity.rare,
-        category: category.potion,
-        time: "00:30:00",
-        is_duplicate: [0, "Major HP Potion"],
-        recipe: {
-            crafting_cost: 15,
-            ingredients: [{
-                    name: "Shy Wild Flower",
-                    quantity: 9
-                },
-                {
-                    name: "Wild Flower",
-                    quantity: 18
-                },
-            ]
-        }
-    },
-    "Elemental HP Potion": {
-        quantity: 3, //batch amount
-        sell_amount: prices["Elemental HP Potion"],
-        icon: "./img/icons/battle_item_01_8_lt_heal648a.png",
-        rarity: rarity.epic,
-        category: category.potion,
-        time: "01:00:00",
-        is_duplicate: [0, "Elemental HP Potion"],
-        recipe: {
-            crafting_cost: 30,
-            ingredients: [{
-                    name: "Bright Wild Flower",
-                    quantity: 6
-                },
-                {
-                    name: "Shy Wild Flower",
-                    quantity: 24
-                },
-                {
-                    name: "Wild Flower",
-                    quantity: 48
-                },
-            ]
-        }
-    },
-    "(F) Prime Oreha Fusion Material": {
-        quantity: 15, //batch amount
-        sell_amount: prices["Prime Oreha Fusion Material"],
-        icon: "./img/icons/use_11_29648a.png",
-        rarity: rarity.epic,
-        category: category.special,
-        time: "01:03:00",
-        is_duplicate: [0, "Prime Oreha Fusion Material"],
-        recipe: {
-            crafting_cost: 300,
-            ingredients: [{
-                    name: "Oreha Solar Carp",
-                    quantity: 52
-                },
-                {
-                    name: "Natural Pearl",
-                    quantity: 69
-                },
-                {
-                    name: "Fish",
-                    quantity: 142
-                },
-            ]
-        }
-    },
-    "(E) Prime Oreha Fusion Material": {
-        quantity: 15, //batch amount
-        sell_amount: prices["Prime Oreha Fusion Material"],
-        icon: "./img/icons/use_11_29648a.png",
-        rarity: rarity.epic,
-        category: category.special,
-        time: "01:03:00",
-        is_duplicate: [1, "Prime Oreha Fusion Material"],
-        recipe: {
-            crafting_cost: 300,
-            ingredients: [{
-                    name: "Oreha Relic",
-                    quantity: 52
-                },
-                {
-                    name: "Rare Relic",
-                    quantity: 51
-                },
-                {
-                    name: "Ancient Relic",
-                    quantity: 107
-                },
-            ]
-        }
-    },
-    "(H) Prime Oreha Fusion Material": {
-        quantity: 15, //batch amount
-        sell_amount: prices["Prime Oreha Fusion Material"],
-        icon: "./img/icons/use_11_29648a.png",
-        rarity: rarity.epic,
-        category: category.special,
-        time: "01:03:00",
-        is_duplicate: [1, "Prime Oreha Fusion Material"],
-        recipe: {
-            crafting_cost: 300,
-            ingredients: [{
-                    name: "Oreha Thick Meat",
-                    quantity: 52
-                },
-                {
-                    name: "Tough Leather",
-                    quantity: 69
-                },
-                {
-                    name: "Thick Raw Meat",
-                    quantity: 142
-                },
-            ]
-        }
-    },
-    "(F) Superior Oreha Fusion Material": {
-        quantity: 20, //batch amount
-        sell_amount: prices["Superior Oreha Fusion Material"],
-        icon: "./img/icons/use_8_109648a.png",
-        rarity: rarity.epic,
-        category: category.special,
-        time: "01:03:00",
-        is_duplicate: [0, "Superior Oreha Fusion Material"],
-        recipe: {
-            crafting_cost: 250,
-            ingredients: [{
-                    name: "Oreha Solar Carp",
-                    quantity: 16
-                },
-                {
-                    name: "Natural Pearl",
-                    quantity: 64
-                },
-                {
-                    name: "Fish",
-                    quantity: 128
-                },
-            ]
-        }
-    },
-    "(E) Superior Oreha Fusion Material": {
-        quantity: 20, //batch amount
-        sell_amount: prices["Superior Oreha Fusion Material"],
-        icon: "./img/icons/use_8_109648a.png",
-        rarity: rarity.epic,
-        category: category.special,
-        time: "01:03:00",
-        is_duplicate: [1, "Prime Oreha Fusion Material"],
-        recipe: {
-            crafting_cost: 250,
-            ingredients: [{
-                    name: "Oreha Relic",
-                    quantity: 16
-                },
-                {
-                    name: "Rare Relic",
-                    quantity: 29
-                },
-                {
-                    name: "Ancient Relic",
-                    quantity: 94
-                },
-            ]
-        }
-    },
-    "(H) Superior Oreha Fusion Material": {
-        quantity: 20, //batch amount
-        sell_amount: prices["Superior Oreha Fusion Material"],
-        icon: "./img/icons/use_8_109648a.png",
-        rarity: rarity.epic,
-        category: category.special,
-        time: "01:00:00",
-        is_duplicate: [1, "Prime Oreha Fusion Material"],
-        recipe: {
-            crafting_cost: 250,
-            ingredients: [{
-                    name: "Oreha Thick Meat",
-                    quantity: 16
-                },
-                {
-                    name: "Tough Leather",
-                    quantity: 64
-                },
-                {
-                    name: "Thick Raw Meat",
-                    quantity: 128
-                },
-            ]
-        }
-    }
-}
-*/
 
 const items = {
     "(E) Basic Oreha Fusion Material": {
