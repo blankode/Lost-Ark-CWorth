@@ -1,9 +1,29 @@
 const prices = {
-    "Time Stop Potion": 43,
-    "Major HP Potion": 17,
-    "Elemental HP Potion": 40,
+    "Superior Oreha Fusion Material": 27,
+    "Basic Oreha Fusion Material": 13,
     "Prime Oreha Fusion Material": 70,
-    "Superior Oreha Fusion Material": 27
+    "[Masterwork] Master's Herb Steak Meal": 600,
+    "Atropine Potion": 56,
+    "Clay Grenade": 13,
+    "Corrosive Bomb": 21,
+    "Dark Grenade": 23,
+    "Destruction Bomb": 24,
+    "Elemental HP Potion": 40,
+    "Flame Grenade": 22,
+    "Flare": 7,
+    "Frost Grenade": 9,
+    "Major HP Potion": 17,
+    "Panacea": 21,
+    "Pheromone Essence": 40,
+    "Protective Potion": 11,
+    "Sacred Charm": 24,
+    "Sleep Bomb": 24,
+    "Splendid Elemental HP Potion": 110,
+    "Splendid Panacea": 59,
+    "Sprinter's Robe": 27,
+    "Stimulant": 49,
+    "Time Stop Potion": 43,
+    "Whirlwind Grenade": 19
 }
 
 let list_data = [];
@@ -24,6 +44,7 @@ function build_data() {
     //populate list
     for (let item in items) {
         if (items.hasOwnProperty(item)) {
+            console.log(item)
             calculate_price(item)
         }
     }
@@ -60,7 +81,7 @@ function fill_data(type) {
     get_item_prices(type)
 }
 
-function get_item_prices (type) {
+function get_item_prices(type) {
     let element = document.getElementById("sidebar_nav")
     element.innerHTML = `
     <li class="nav-item">
@@ -118,7 +139,7 @@ function get_item_prices (type) {
     }
 }
 
-function get_material_prices () {
+function get_material_prices() {
     let element = document.getElementById("sidebar_nav")
     element.innerHTML = `
     <li class="nav-item">
@@ -165,7 +186,7 @@ function get_material_prices () {
     }
 }
 
-function get_reductions () {
+function get_reductions() {
     let element = document.getElementById("sidebar_nav")
     element.innerHTML = `
     <li class="nav-item">
@@ -286,8 +307,11 @@ const materials = {
     "Tender Timber": ["Tender Timber", "16", "10", "./img/icons/use_3_253.png", rarity.uncommon],
     "Sturdy Timber": ["Sturdy Timber", "103", "10", "./img/icons/use_4_4648a.png", rarity.rare],
     "Tough Leather": ["Tough Leather", "15", "10", "./img/icons/use_2_204648a.png", rarity.uncommon],
+    "Elemental HP Potion": ["Elemental HP Potion", prices["Elemental HP Potion"], "1", "./img/icons/use_2_204648a.png", rarity.rare],
+    "Panacea": ["Panacea", prices["Panacea"], "1", "./img/icons/use_2_204648a.png", rarity.rare]
 }
 
+/*
 //Recipes
 const items = {
     "Time Stop Potion": {
@@ -520,3 +544,836 @@ const items = {
         }
     }
 }
+*/
+
+const items = {
+    "(E) Basic Oreha Fusion Material": {
+        quantity: 30, // batch amount
+        sell_amount: prices["Basic Oreha Fusion Material"],
+        icon: "./img/icons/use_9_71.png",
+        rarity: rarity.rare,
+        category: category.special,
+        time: "00:45:00",
+        is_duplicate: [0, "Basic Oreha Fusion Material"],
+        recipe: {
+            crafting_cost: 205,
+            ingredients: [{
+                name: "Oreha Relic",
+                quantity: 8
+            },
+            {
+                name: "Rare Relic",
+                quantity: 26
+            },
+            {
+                name: "Ancient Relic",
+                quantity: 64
+            }
+            ]
+        }
+    },
+   "(E) Prime Oreha Fusion Material": {
+        quantity: 15,
+        sell_amount: prices["Prime Oreha Fusion Material"],
+        icon: "./img/icons/use_11_29648a.png",
+        rarity: rarity.epic,
+        category: category.special,
+        time: "01:03:00",
+        is_duplicate: [0, "Prime Oreha Fusion Material"],
+        recipe: {
+            crafting_cost: 300,
+            ingredients: [{
+                name: "Oreha Relic",
+                quantity: 52
+            },
+            {
+                name: "Rare Relic",
+                quantity: 51
+            },
+            {
+                name: "Ancient Relic",
+                quantity: 107
+            }
+            ]
+        }
+    },
+    "(E) Superior Oreha Fusion Material": {
+        quantity: 20,
+        sell_amount: prices["Superior Oreha Fusion Material"],
+        icon: "./img/icons/use_8_109648a.png",
+        rarity: rarity.epic,
+        category: category.special,
+        time: "01:00:00",
+        is_duplicate: [0, "Superior Oreha Fusion Material"],
+        recipe: {
+            crafting_cost: 250,
+            ingredients: [{
+                name: "Oreha Relic",
+                quantity: 16
+            },
+            {
+                name: "Rare Relic",
+                quantity: 29
+            },
+            {
+                name: "Ancient Relic",
+                quantity: 94
+            }
+            ]
+        }
+    },
+    "(F) Basic Oreha Fusion Material": {
+        quantity: 30,
+        sell_amount: prices["Basic Oreha Fusion Material"],
+        icon: "./img/icons/use_9_71.png",
+        rarity: rarity.rare,
+        category: category.special,
+        time: "00:45:00",
+        is_duplicate: [1, "Basic Oreha Fusion Material"],
+        recipe: {
+            crafting_cost: 205,
+            ingredients: [{
+                name: "Oreha Solar Carp",
+                quantity: 10
+            },
+            {
+                name: "Natural Pearl",
+                quantity: 40
+            },
+            {
+                name: "Fish",
+                quantity: 80
+            }
+            ]
+        }
+    },
+    "(F) Prime Oreha Fusion Material": {
+        quantity: 15,
+        sell_amount: prices["Prime Oreha Fusion Material"],
+        icon: "./img/icons/use_11_29648a.png",
+        rarity: rarity.epic,
+        category: category.special,
+        time: "01:03:00",
+        is_duplicate: [1, "Prime Oreha Fusion Material"],
+        recipe: {
+            crafting_cost: 300,
+            ingredients: [{
+                name: "Oreha Solar Carp",
+                quantity: 52
+            },
+            {
+                name: "Natural Pearl",
+                quantity: 69
+            },
+            {
+                name: "Fish",
+                quantity: 142
+            }
+            ]
+        }
+    },
+    "(F) Superior Oreha Fusion Material": {
+        quantity: 20,
+        sell_amount: prices["Superior Oreha Fusion Material"],
+        icon: "./img/icons/use_8_109648a.png",
+        rarity: rarity.epic,
+        category: category.special,
+        time: "01:00:00",
+        is_duplicate: [1, "Superior Oreha Fusion Material"],
+        recipe: {
+            crafting_cost: 250,
+            ingredients: [{
+                name: "Oreha Solar Carp",
+                quantity: 16
+            },
+            {
+                name: "Natural Pearl",
+                quantity: 64
+            },
+            {
+                name: "Fish",
+                quantity: 128
+            }
+            ]
+        }
+    },
+    "(H) Basic Oreha Fusion Material": {
+        quantity: 30,
+        sell_amount: prices["Basic Oreha Fusion Material"],
+        icon: "./img/icons/use_9_71.png",
+        rarity: rarity.rare,
+        category: category.special,
+        time: "00:45:00",
+        is_duplicate: [1, "Basic Oreha Fusion Material"],
+        recipe: {
+            crafting_cost: 205,
+            ingredients: [{
+                name: "Oreha Thick Meat",
+                quantity: 10
+            },
+            {
+                name: "Tough Leather",
+                quantity: 40
+            },
+            {
+                name: "Thick Raw Meat",
+                quantity: 80
+            }
+            ]
+        }
+    },
+    "(H) Prime Oreha Fusion Material": {
+        quantity: 15,
+        sell_amount: prices["Prime Oreha Fusion Material"],
+        icon: "./img/icons/use_11_29648a.png",
+        rarity: rarity.epic,
+        category: category.special,
+        time: "01:03:00",
+        is_duplicate: [1, "Prime Oreha Fusion Material"],
+        recipe: {
+            crafting_cost: 300,
+            ingredients: [{
+                name: "Oreha Thick Meat",
+                quantity: 52
+            },
+            {
+                name: "Tough Leather",
+                quantity: 69
+            },
+            {
+                name: "Thick Raw Meat",
+                quantity: 142
+            }
+            ]
+        }
+    },
+    "(H) Superior Oreha Fusion Material": {
+        quantity: 20,
+        sell_amount: prices["Superior Oreha Fusion Material"],
+        icon: "./img/icons/use_8_109648a.png",
+        rarity: rarity.epic,
+        category: category.special,
+        time: "01:00:00",
+        is_duplicate: [1, "Superior Oreha Fusion Material"],
+        recipe: {
+            crafting_cost: 250,
+            ingredients: [{
+                name: "Oreha Thick Meat",
+                quantity: 16
+            },
+            {
+                name: "Tough Leather",
+                quantity: 64
+            },
+            {
+                name: "Thick Raw Meat",
+                quantity: 128
+            }
+            ]
+        }
+    },
+    "[Masterwork] Master's Herb Steak Meal": {
+        quantity: 1,
+        sell_amount: prices["[Masterwork] Master's Herb Steak Meal"],
+        icon: "./img/icons/use_8_215.png",
+        rarity: rarity.rare,
+        category: category.cooking,
+        time: "01:00:00",
+        is_duplicate: [0, "[Masterwork] Master's Herb Steak Meal"],
+        recipe: {
+            crafting_cost: 50,
+            ingredients: [{
+                name: "Oreha Thick Meat",
+                quantity: 12
+            },
+            {
+                name: "Oreha Solar Carp",
+                quantity: 10
+            },
+            {
+                name: "Treated Meat",
+                quantity: 48
+            },
+            {
+                name: "Redflesh Fish",
+                quantity: 40
+            },
+            {
+                name: "Thick Raw Meat",
+                quantity: 96
+            },
+            {
+                name: "Fish",
+                quantity: 80
+            }
+            ]
+        }
+    },
+    "Atropine Potion": {
+        quantity: 3,
+        sell_amount: prices["Atropine Potion"],
+        icon: "./img/icons/battle_item_01_72.png",
+        rarity: rarity.epic,
+        category: category.potion,
+        time: "01:00:00",
+        is_duplicate: [0, "Atropine Potion"],
+        recipe: {
+            crafting_cost: 30,
+            ingredients: [{
+                name: "Bright Wild Flower",
+                quantity: 6
+            },
+            {
+                name: "Strong Iron Ore",
+                quantity: 2
+            },
+            {
+                name: "Shy Wild Flower",
+                quantity: 24
+            },
+            {
+                name: "Rare Relic",
+                quantity: 2
+            },
+            {
+                name: "Wild Flower",
+                quantity: 48
+            }
+            ]
+        }
+    },
+    "Clay Grenade": {
+        quantity: 3,
+        sell_amount: prices["Clay Grenade"],
+        icon: "./img/icons/battle_item_01_54.png",
+        rarity: rarity.rare,
+        category: category.grenade,
+        time: "00:30:00",
+        is_duplicate: [0, "Clay Grenade"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 3
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 12
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 24
+            },
+            {
+                name: "Iron Ore",
+                quantity: 5
+            }
+            ]
+        }
+    },
+    "Corrosive Bomb": {
+        quantity: 3,
+        sell_amount: prices["Corrosive Bomb"],
+        icon: "./img/icons/battle_item_01_49.png",
+        rarity: rarity.rare,
+        category: category.bomb,
+        time: "00:30:00",
+        is_duplicate: [0, "Corrosive Bomb"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 4
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 12
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 32
+            },
+            {
+                name: "Heavy Iron Ore",
+                quantity: 6
+            }
+            ]
+        }
+    },
+    "Dark Grenade": {
+        quantity: 3,
+        sell_amount: prices["Dark Grenade"],
+        icon: "./img/icons/battle_item_01_47.png",
+        rarity: rarity.rare,
+        category: category.grenade,
+        time: "00:30:00",
+        is_duplicate: [0, "Dark Grenade"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 3
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 12
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 24
+            },
+            {
+                name: "Tender Timber",
+                quantity: 3
+            }
+            ]
+        }
+    },
+    "Destruction Bomb": {
+        quantity: 3,
+        sell_amount: prices["Destruction Bomb"],
+        icon: "./img/icons/battle_item_01_21.png",
+        rarity: rarity.rare,
+        category: category.bomb,
+        time: "00:30:00",
+        is_duplicate: [0, "Destruction Bomb"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 4
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 12
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 32
+            },
+            {
+                name: "Heavy Iron Ore",
+                quantity: 6
+            }
+            ]
+        }
+    },
+    "Elemental HP Potion": {
+        quantity: 3,
+        sell_amount: prices["Elemental HP Potion"],
+        icon: "./img/icons/battle_item_01_8.png",
+        rarity: rarity.epic,
+        category: category.potion,
+        time: "01:00:00",
+        is_duplicate: [1, "Elemental HP Potion"],
+        recipe: {
+            crafting_cost: 30,
+            ingredients: [{
+                name: "Bright Wild Flower",
+                quantity: 6
+            },
+            {
+                name: "Shy Wild Flower",
+                quantity: 24
+            },
+            {
+                name: "Wild Flower",
+                quantity: 48
+            }
+            ]
+        }
+    },
+    "Flame Grenade": {
+        quantity: 3,
+        sell_amount: prices["Flame Grenade"],
+        icon: "./img/icons/battle_item_01_1.png",
+        rarity: rarity.rare,
+        category: category.grenade,
+        time: "00:30:00",
+        is_duplicate: [0, "Flame Grenade"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 3
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 12
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 24
+            },
+            {
+                name: "Tender Timber",
+                quantity: 3
+            }
+            ]
+        }
+    },
+    "Flare": {
+        quantity: 3,
+        sell_amount: prices["Flare"],
+        icon: "./img/icons/battle_item_01_4.png",
+        rarity: rarity.uncommon,
+        category: category.general,
+        time: "00:00:08",
+        is_duplicate: [0, "Flare"],
+        recipe: {
+            crafting_cost: 0,
+            ingredients: [{
+                name: "Natural Pearl",
+                quantity: 20
+            },
+            {
+                name: "Wild Flower",
+                quantity: 35
+            }
+            ]
+        }
+    },
+    "Frost Grenade": {
+        quantity: 3,
+        sell_amount: prices["Frost Grenade"],
+        icon: "./img/icons/battle_item_01_2.png",
+        rarity: rarity.rare,
+        category: category.grenade,
+        time: "00:30:00",
+        is_duplicate: [0, "Frost Grenade"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 3
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 12
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 24
+            },
+            {
+                name: "Iron Ore",
+                quantity: 5
+            }
+            ]
+        }
+    },
+    "Major HP Potion": {
+        quantity: 3,
+        sell_amount: prices["Major HP Potion"],
+        icon: "./img/icons/battle_item_01_7.png",
+        rarity: rarity.rare,
+        category: category.potion,
+        time: "00:30:00",
+        is_duplicate: [0, "Major HP Potion"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Shy Wild Flower",
+                quantity: 9
+            },
+            {
+                name: "Wild Flower",
+                quantity: 18
+            }
+            ]
+        }
+    },
+    "Panacea": {
+        quantity: 3,
+        sell_amount: prices["Panacea"],
+        icon: "./img/icons/battle_item_01_17.png",
+        rarity: rarity.rare,
+        category: category.potion,
+        time: "00:30:00",
+        is_duplicate: [0, "Panacea"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 10
+            }
+            ]
+        }
+    },
+    "Pheromone Essence": {
+        quantity: 3,
+        sell_amount: prices["Pheromone Essence"],
+        icon: "./img/icons/battle_item_01_78.png",
+        rarity: rarity.rare,
+        category: category.bomb,
+        time: "00:30:00",
+        is_duplicate: [0, "Pheromone Essence"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 4
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 12
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 32
+            },
+            {
+                name: "Heavy Iron Ore",
+                quantity: 6
+            }
+            ]
+        }
+    },
+    "Protective Potion": {
+        quantity: 3,
+        sell_amount: prices["Protective Potion"],
+        icon: "./img/icons/battle_item_01_50.png",
+        rarity: rarity.rare,
+        category: category.potion,
+        time: "00:30:00",
+        is_duplicate: [0, "Protective Potion"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 4
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 16
+            },
+            {
+                name: "Rare Relic",
+                quantity: 5
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 32
+            }
+            ]
+        }
+    },
+    "Sacred Charm": {
+        quantity: 3,
+        sell_amount: prices["Sacred Charm"],
+        icon: "./img/icons/battle_item_01_51.png",
+        rarity: rarity.rare,
+        category: category.potion,
+        time: "00:30:00",
+        is_duplicate: [0, "Sacred Charm"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 3
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 18
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 30
+            }
+            ]
+        }
+    },
+    "Sleep Bomb": {
+        quantity: 3,
+        sell_amount: prices["Sleep Bomb"],
+        icon: "./img/icons/battle_item_01_69.png",
+        rarity: rarity.rare,
+        category: category.bomb,
+        time: "00:30:00",
+        is_duplicate: [0, "Sleep Bomb"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 4
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 12
+            },
+            {
+                name: "Iron Ore",
+                quantity: 10
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 32
+            }
+            ]
+        }
+    },
+   "Splendid Elemental HP Potion": {
+        quantity: 2,
+        sell_amount: prices["Splendid Elemental HP Potion"],
+        icon: "./img/icons/battle_item_01_80.png",
+        rarity: rarity.epic,
+        category: category.potion,
+        time: "01:15:00",
+        is_duplicate: [0, "Splendid Elemental HP Potion"],
+        recipe: {
+            crafting_cost: 30,
+            ingredients: [{
+                name: "Elemental HP Potion",
+                quantity: 3
+            },
+            {
+                name: "Bright Wild Flower",
+                quantity: 8
+            }
+            ]
+        }
+    },
+    "Splendid Panacea": {
+        quantity: 2,
+        sell_amount: prices["Splendid Panacea"],
+        icon: "./img/icons/splendidpanacea.png",
+        rarity: rarity.epic,
+        category: category.potion,
+        time: "00:45:00",
+        is_duplicate: [0, "Splendid Panacea"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Panacea",
+                quantity: 3
+            },
+            {
+                name: "Exquisite Mushroom",
+                quantity: 10
+            }
+            ]
+        }
+    },
+    "Sprinter's Robe": {
+        quantity: 3,
+        sell_amount: prices["Sprinter's Robe"],
+        icon: "./img/icons/sprinterrobe.png",
+        rarity: rarity.rare,
+        category: category.potion,
+        time: "00:30:00",
+        is_duplicate: [0, "Sprinter's Robe"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Tough Leather",
+                quantity: 17
+            },
+            {
+                name: "Shy Wild Flower",
+                quantity: 17
+            },
+            {
+                name: "Wild Flower",
+                quantity: 27
+            }
+            ]
+        }
+    },
+    "Stimulant": {
+        quantity: 3,
+        sell_amount: prices["Stimulant"],
+        icon: "./img/icons/stimulant.png",
+        rarity: rarity.epic,
+        category: category.potion,
+        time: "01:00:00",
+        is_duplicate: [0, "Stimulant"],
+        recipe: {
+            crafting_cost: 30,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 5
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 20
+            },
+            {
+                name: "Sturdy Timber",
+                quantity: 2
+            },
+            {
+                name: "Rare Relic",
+                quantity: 4
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 40
+            }
+            ]
+        }
+    },
+    "Time Stop Potion": {
+        quantity: 3,
+        sell_amount: prices["Time Stop Potion"],
+        icon: "./img/icons/timestop.png",
+        rarity: rarity.epic,
+        category: category.potion,
+        time: "01:00:00",
+        is_duplicate: [0, "Time Stop Potion"],
+        recipe: {
+            crafting_cost: 30,
+            ingredients: [{
+                name: "Bright Wild Flower",
+                quantity: 2
+            },
+            {
+                name: "Sturdy Timber",
+                quantity: 2
+            },
+            {
+                name: "Shy Wild Flower",
+                quantity: 20
+            },
+            {
+                name: "Rare Relic",
+                quantity: 2
+            },
+            {
+                name: "Wild Flower",
+                quantity: 40
+            }
+            ]
+        }
+    },
+    "Whirlwind Grenade": {
+        quantity: 3,
+        sell_amount: prices["Whirlwind Grenade"],
+        icon: "./img/icons/battle_item_01_53.png",
+        rarity: rarity.rare,
+        category: category.grenade,
+        time: "00:45:00",
+        is_duplicate: [0, "Whirlwind Grenade"],
+        recipe: {
+            crafting_cost: 15,
+            ingredients: [{
+                name: "Exquisite Mushroom",
+                quantity: 3
+            },
+            {
+                name: "Fresh Mushroom",
+                quantity: 12
+            },
+            {
+                name: "Tender Timber",
+                quantity: 3
+            },
+            {
+                name: "Crude Mushroom",
+                quantity: 24
+            }
+            ]
+        }
+    }
+};
+
+console.log(items)
