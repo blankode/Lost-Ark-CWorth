@@ -1,54 +1,54 @@
 const prices = {
     //items
-        "Superior Oreha Fusion Material": 26,
-        "Basic Oreha Fusion Material": 13,
-        "Prime Oreha Fusion Material": 72,
-        "[Masterwork] Master's Herb Steak Meal": 600,
-        "Atropine Potion": 56,
-        "Clay Grenade": 13,
-        "Corrosive Bomb": 21,
-        "Dark Grenade": 23,
-        "Destruction Bomb": 24,
-        "Elemental HP Potion": 40,
-        "Flame Grenade": 22,
-        "Flare": 7,
-        "Frost Grenade": 9,
-        "Major HP Potion": 17,
-        "Panacea": 21,
-        "Pheromone Essence": 40,
-        "Protective Potion": 11,
-        "Sacred Charm": 24,
-        "Sleep Bomb": 24,
-        "Splendid Elemental HP Potion": 110,
-        "Splendid Panacea": 59,
-        "Sprinter's Robe": 27,
-        "Stimulant": 49,
-        "Time Stop Potion": 43,
-        "Whirlwind Grenade": 19,
+    "Superior Oreha Fusion Material": 26,
+    "Basic Oreha Fusion Material": 13,
+    "Prime Oreha Fusion Material": 72,
+    "[Masterwork] Master's Herb Steak Meal": 600,
+    "Atropine Potion": 56,
+    "Clay Grenade": 13,
+    "Corrosive Bomb": 21,
+    "Dark Grenade": 23,
+    "Destruction Bomb": 24,
+    "Elemental HP Potion": 40,
+    "Flame Grenade": 22,
+    "Flare": 7,
+    "Frost Grenade": 9,
+    "Major HP Potion": 17,
+    "Panacea": 21,
+    "Pheromone Essence": 40,
+    "Protective Potion": 11,
+    "Sacred Charm": 24,
+    "Sleep Bomb": 24,
+    "Splendid Elemental HP Potion": 110,
+    "Splendid Panacea": 59,
+    "Sprinter's Robe": 27,
+    "Stimulant": 49,
+    "Time Stop Potion": 43,
+    "Whirlwind Grenade": 19,
     //materials
-        "Wild Flower": 57,
-        "Shy Wild Flower": 12,
-        "Bright Wild Flower": 53,
-        "Crude Mushroom": 52,
-        "Fresh Mushroom": 10,
-        "Exquisite Mushroom": 53,
-        "Ancient Relic": 84,
-        "Rare Relic": 17,
-        "Oreha Relic": 110,
-        "Iron Ore": 56,
-        "Heavy Iron Ore": 12,
-        "Strong Iron Ore": 58,
-        "Thick Raw Meat": 145,
-        "Treated Meat": 24,
-        "Oreha Thick Meat": 83,
-        "Fish": 74,
-        "Redflesh Fish": 16,
-        "Oreha Solar Carp":98,
-        "Natural Pearl": 18,
-        "Timber": 100,
-        "Tender Timber": 17,
-        "Sturdy Timber": 97,
-        "Tough Leather": 16
+    "Wild Flower": 57,
+    "Shy Wild Flower": 12,
+    "Bright Wild Flower": 53,
+    "Crude Mushroom": 52,
+    "Fresh Mushroom": 10,
+    "Exquisite Mushroom": 53,
+    "Ancient Relic": 84,
+    "Rare Relic": 17,
+    "Oreha Relic": 110,
+    "Iron Ore": 56,
+    "Heavy Iron Ore": 12,
+    "Strong Iron Ore": 58,
+    "Thick Raw Meat": 145,
+    "Treated Meat": 24,
+    "Oreha Thick Meat": 83,
+    "Fish": 74,
+    "Redflesh Fish": 16,
+    "Oreha Solar Carp": 98,
+    "Natural Pearl": 18,
+    "Timber": 100,
+    "Tender Timber": 17,
+    "Sturdy Timber": 97,
+    "Tough Leather": 16
 }
 
 //category (0 = discount; 1 = time reduction)
@@ -157,7 +157,7 @@ function fill_data(type) {
           </tr>
             `;
             if (profit < 0) {
-                document.getElementById("no-profit"+item.item).removeAttribute("hidden")
+                document.getElementById("no-profit" + item.item).removeAttribute("hidden")
             }
         }
 
@@ -165,7 +165,7 @@ function fill_data(type) {
         const ingredients = items[item.item].recipe.ingredients;
         let mats_price = 0
         let total_mats_price = 0
-        element = document.getElementById("materials_"+item.item)
+        element = document.getElementById("materials_" + item.item)
         for (let i = 0; i < ingredients.length; i++) {
             element.innerHTML += `
             <tr>
@@ -371,8 +371,8 @@ function get_reductions() {
         `
     }
     for (let item in category) {
-        document.getElementById(item+"_cost_discount").value = category[item][0]
-        document.getElementById(item+"_time_reduction").value = category[item][1]
+        document.getElementById(item + "_cost_discount").value = category[item][0]
+        document.getElementById(item + "_time_reduction").value = category[item][1]
     }
 }
 
