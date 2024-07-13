@@ -133,9 +133,15 @@
       color: #0075db;
     }
 
-    .small_font {
-      font-size: xx-small;
+    .item_title {
+      font-size: large;
+      font-style: oblique;
     }
+
+    .no_profit {
+      color: #cc0000;
+    }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="./data/offcanvas-navbar.css" rel="stylesheet">
@@ -235,6 +241,24 @@
           </div>
           <div class="col">
             <div class="my-3 p-3 bg-body rounded shadow-sm">
+              <table class="table" style="border-style: hidden">
+                  <tr>
+                    <th class="item_title">Craft quantity</h>
+                    <th>
+                      <div class="input-group mb-3" id="">
+                        <input type="text" class="form-control" id="craft_cost">
+                      </div>
+                    </th>
+                    <th>
+                        <a href="#" onclick="">
+                          <h4>
+                            <i class="bi bi-floppy"></i>
+                          </h4>
+                        </a>
+                    </th>
+                  </tr>
+              </table>
+
               <ul class="nav nav-tabs" id="sidebar_nav">
                 <!--<li class="nav-item">
                   <a class="nav-link active" href="#">Item Prices</a>
@@ -247,12 +271,10 @@
                 </li>-->
               </ul>
               <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Price</th>
-                  </tr>
+                <thead >
+                  <tr id="sidebar_type">
+
+                </tr>
                 </thead>
                 <tbody id="sidebar_data">
                   
