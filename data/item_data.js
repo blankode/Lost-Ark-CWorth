@@ -85,6 +85,7 @@ function fill_data(type) {
     let profit = 0
     list_data.forEach(item => {
         profit = (item.profit * craft_amount).toFixed(2)
+        time_amount = multiplyTime(item.time, craft_amount);
         if (count_items <= 5) {
             content.innerHTML += `
             <tr class="table">
@@ -114,7 +115,7 @@ function fill_data(type) {
             </tbody>
             </table>
             </td>
-            <td>${craft_amount}</td>
+            <td>${time_amount}</td>
             <td>${profit} <img src="./img/icons/gold.png" width="18" height="18">
             </td>
           </tr>
@@ -150,7 +151,7 @@ function fill_data(type) {
             </tbody>
             </table>
             </td>
-            <td>${craft_amount}</td>
+            <td>${time_amount}</td>
             <td>${profit} <img src="./img/icons/gold.png" width="18" height="18">
             </td>
           </tr>
@@ -320,9 +321,11 @@ function get_material_prices() {
         }
     }
     for (const material in materials) {
-        let item = materials[material]
-        let element = document.getElementById(item[0])
-        element.value = item[1]
+        if (materials[material][5] == "material") {
+            let item = materials[material]
+            let element = document.getElementById(item[0])
+            element.value = item[1]
+        }
     }
 }
 
@@ -414,6 +417,7 @@ function calculate_price(item) {
     list_data.push(Object.assign({}, item_data, {
         item: item,
         batch: batch,
+        time: time,
         //category: items[item].category,
         profit: profit,
         rarity: recipe.rarity,
@@ -426,9 +430,7 @@ function save_prices() {
     for (const item in prices) {
         if (prices.hasOwnProperty(item)) {
             let element = document.getElementById(item)
-            console.log(element)
             if (element) {
-                console.log(prices[item])
                 prices[item] = Number(element.value);
             }
         }
@@ -439,6 +441,37 @@ function refresh_data() {
     let content = document.getElementById("content")
     content.innerHTML = ""
     fill_data()
+}
+
+function multiplyTime(timeString, multiplier) {
+    // Split the time string into parts
+    const [hours, minutes, seconds] = timeString.split(':').map(Number);
+
+    // Convert the time into total seconds
+    let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+    // Multiply the total seconds by the multiplier
+    totalSeconds *= multiplier;
+
+    // Calculate the new hours, minutes, and seconds
+    const newHours = Math.floor(totalSeconds / 3600);
+    totalSeconds %= 3600;
+    const newMinutes = Math.floor(totalSeconds / 60);
+    const newSeconds = totalSeconds % 60;
+
+    // Helper function to format each part
+    function formatPart(value, singular, plural) {
+        return value === 1 ? `${value} ${singular}` : `${value} ${plural}`;
+    }
+
+    // Format the new time string
+    const parts = [];
+    if (newHours > 0) parts.push(formatPart(newHours, "Hour", "Hours"));
+    if (newMinutes > 0) parts.push(formatPart(newMinutes, "minute", "minutes"));
+    if (newSeconds > 0) parts.push(formatPart(newSeconds, "second", "seconds"));
+
+    // Join parts into the final string
+    return parts.join(', ').replace(/,([^,]*)$/, ' and$1');
 }
 
 //rarities
@@ -1310,5 +1343,3 @@ const items = {
         }
     }
 };
-
-console.log(items)
